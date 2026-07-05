@@ -1,0 +1,170 @@
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+  letter-spacing: 0.02em;
+}
+.addBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-1);
+  font-size: 12.5px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.addBtn:hover {
+  border-color: var(--accent-dim);
+  color: var(--text-0);
+}
+.empty {
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 세로 연결 타임라인 */
+.item {
+  position: relative;
+  padding-left: 28px;
+}
+/* 연결선 — 다음 블록까지 이어지도록 gap 만큼 더 내려감 */
+.item::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  bottom: -16px;
+  width: 2px;
+  background: var(--border);
+}
+.item:last-child::before {
+  bottom: auto;
+  height: 14px;
+}
+/* 노드 점 */
+.node {
+  position: absolute;
+  left: 3px;
+  top: 7px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-1);
+  border: 2px solid var(--accent-dim);
+  z-index: 1;
+}
+.dragging {
+  z-index: 5;
+}
+.dragging .body {
+  border-color: var(--accent-dim);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.body {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.grip {
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  color: var(--text-3);
+  font-size: 15px;
+  line-height: 1;
+  padding: 4px 2px;
+  cursor: grab;
+  touch-action: none;
+  border-radius: 5px;
+  transition: color 0.12s ease;
+}
+.grip:hover {
+  color: var(--text-1);
+}
+.grip:active {
+  cursor: grabbing;
+}
+
+.period {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-0);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 10px;
+  border-radius: 7px;
+  outline: none;
+}
+.period::placeholder {
+  color: var(--text-3);
+  font-weight: 400;
+}
+.period:focus {
+  border-color: var(--accent-dim);
+}
+
+.del {
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  color: var(--text-3);
+  font-size: 12px;
+  padding: 4px 6px;
+  border-radius: 5px;
+  transition: color 0.12s ease;
+}
+.del:hover {
+  color: var(--danger);
+}
+
+.title,
+.content {
+  width: 100%;
+  background: var(--bg-0);
+  border: 1px solid var(--border);
+  color: var(--text-0);
+  font-size: 13.5px;
+  padding: 8px 11px;
+  border-radius: 7px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.title::placeholder,
+.content::placeholder {
+  color: var(--text-3);
+}
+.title:focus,
+.content:focus {
+  border-color: var(--accent-dim);
+}
+.content {
+  resize: vertical;
+  min-height: 56px;
+  line-height: 1.6;
+}

@@ -1,0 +1,105 @@
+.app {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  height: 100vh;
+  width: 100vw;
+}
+
+.main {
+  height: 100vh;
+  overflow-y: auto;
+  background: radial-gradient(120% 120% at 100% 0%, #14141a 0%, var(--bg-0) 55%);
+}
+
+.editor {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 28px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 44px 64px;
+  align-items: start;
+}
+
+/* 좁은 화면: 카드가 폼 아래로 */
+@media (max-width: 1080px) {
+  .editor {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* empty state */
+.empty {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  padding: 24px;
+}
+.emptyMark {
+  font-size: 30px;
+  color: var(--accent);
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+.emptyTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.emptyText {
+  color: var(--text-2);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.emptyBtn {
+  background: var(--accent);
+  color: #18141f;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 11px 20px;
+  border-radius: var(--radius-sm);
+  transition: filter 0.15s ease;
+}
+.emptyBtn:hover {
+  filter: brightness(1.08);
+}
+
+/* toast */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-3);
+  color: var(--text-0);
+  border: 1px solid var(--border-strong);
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  animation: toastIn 0.2s ease;
+  z-index: 50;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}

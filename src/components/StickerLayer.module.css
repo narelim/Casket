@@ -1,0 +1,74 @@
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.sticker {
+  position: absolute;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  touch-action: none;
+}
+.selected {
+  outline: 2px dashed var(--accent);
+  outline-offset: 2px;
+  cursor: grab;
+}
+.selected:active {
+  cursor: grabbing;
+}
+
+.handle {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: var(--accent);
+  border: 2px solid #18141f;
+  border-radius: 50%;
+  z-index: 2;
+  touch-action: none;
+}
+.tl {
+  top: -9px;
+  left: -9px;
+  cursor: nwse-resize;
+}
+.tr {
+  top: -9px;
+  right: -9px;
+  cursor: nesw-resize;
+}
+.bl {
+  bottom: -9px;
+  left: -9px;
+  cursor: nesw-resize;
+}
+.br {
+  bottom: -9px;
+  right: -9px;
+  cursor: nwse-resize;
+}
+
+.trash {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--bg-3);
+  border: 2px solid #18141f;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  z-index: 3;
+}
+.trash:hover {
+  background: var(--danger);
+}

@@ -1,0 +1,622 @@
+.editor {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: var(--bg-0);
+}
+
+/* 상단 바 */
+.topbar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-1);
+}
+.back {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-1);
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.back:hover {
+  border-color: var(--border-strong);
+  color: var(--text-0);
+}
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-weight: 600;
+}
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-left: 18px;
+  background: var(--bg-0);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 3px;
+}
+.tab {
+  background: transparent;
+  border: none;
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 6px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.tab:hover {
+  color: var(--text-0);
+}
+.tabActive {
+  background: var(--accent);
+  color: #18141f;
+  font-weight: 600;
+}
+
+.topActions {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+.ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-1);
+  font-size: 13px;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.ghost:hover {
+  border-color: var(--border-strong);
+  color: var(--text-0);
+}
+.primary {
+  background: var(--accent);
+  color: #18141f;
+  border: none;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  transition: filter 0.15s ease;
+}
+.primary:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+.primary:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* 본문 2분할 */
+.body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  min-height: 0;
+}
+
+/* 왼쪽 패널 */
+.panel {
+  border-right: 1px solid var(--border);
+  background: var(--bg-1);
+  padding: 24px 22px 40px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.notice {
+  color: var(--text-2);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.fieldLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.select,
+.selectSm,
+.textarea {
+  width: 100%;
+  background: var(--bg-0);
+  border: 1px solid var(--border);
+  color: var(--text-0);
+  font-size: 13.5px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.select:focus,
+.selectSm:focus,
+.textarea:focus {
+  border-color: var(--accent-dim);
+}
+.select option,
+.selectSm option {
+  background: var(--bg-2);
+  color: var(--text-0);
+}
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+.textarea::placeholder {
+  color: var(--text-3);
+}
+
+.upload {
+  background: var(--bg-2);
+  border: 1px dashed var(--border-strong);
+  color: var(--text-1);
+  font-size: 13px;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.upload:hover {
+  border-color: var(--accent-dim);
+  color: var(--text-0);
+}
+.layoutOn {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #18141f;
+  font-weight: 600;
+}
+.thumbRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.thumb {
+  width: 56px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+}
+
+/* 이미지 슬롯 */
+.slotWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+.slot {
+  width: 100%;
+  height: 120px;
+  background: var(--bg-2);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: border-color 0.15s ease;
+}
+.slot:hover {
+  border-color: var(--accent-dim);
+}
+.slotPlus {
+  font-size: 22px;
+  line-height: 1;
+}
+.slotLabel {
+  font-size: 12px;
+}
+.slotRow {
+  display: flex;
+  gap: 10px;
+}
+
+.stickerBtns {
+  display: flex;
+  gap: 8px;
+}
+.stickerBtns > .ghostSm {
+  flex: 1;
+}
+
+/* 스티커 썸네일 스트립 */
+.stickerStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stickerThumb {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  background-color: var(--bg-2);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.12s ease;
+}
+.stickerThumb:hover {
+  border-color: var(--border-strong);
+}
+.stickerThumbSel {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.stickerThumbDel {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg-3);
+  border: 1px solid var(--border-strong);
+  color: var(--text-1);
+  font-size: 9px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  transition: color 0.12s ease, background 0.12s ease;
+}
+.stickerThumbDel:hover {
+  color: var(--danger);
+  background: rgba(255, 123, 133, 0.14);
+}
+
+/* 2인용 좌/우 캐릭터 카드 */
+.sideCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-0);
+}
+.sideTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.presetRow {
+  display: flex;
+  gap: 8px;
+}
+.ghostSm {
+  flex: 0 0 auto;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-1);
+  font-size: 12.5px;
+  padding: 8px 12px;
+  border-radius: 7px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.ghostSm:hover {
+  border-color: var(--accent-dim);
+  color: var(--text-0);
+}
+.selectSm {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 12.5px;
+}
+
+.presetList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.presetChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-1);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  padding: 4px 6px 4px 10px;
+  border-radius: 999px;
+}
+.presetDel {
+  background: transparent;
+  border: none;
+  color: var(--text-3);
+  font-size: 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: color 0.12s ease, background 0.12s ease;
+}
+.presetDel:hover {
+  color: var(--danger);
+  background: rgba(255, 123, 133, 0.12);
+}
+
+.colorPick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.colorDot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-1);
+  box-shadow: 0 0 0 1px var(--border-strong);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.colorDot:hover {
+  transform: scale(1.1);
+}
+.colorActive {
+  box-shadow: 0 0 0 2px var(--accent);
+  transform: scale(1.1);
+}
+
+.hint,
+.linkDanger {
+  font-size: 12px;
+}
+.hint {
+  color: var(--text-3);
+  line-height: 1.5;
+}
+.linkDanger {
+  align-self: flex-start;
+  background: transparent;
+  border: none;
+  color: var(--text-3);
+  padding: 2px 0;
+  transition: color 0.12s ease;
+}
+.linkDanger:hover {
+  color: var(--danger);
+}
+
+/* 오른쪽 미리보기 */
+.previewArea {
+  overflow: auto;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: radial-gradient(120% 120% at 50% 0%, #14141a 0%, var(--bg-0) 60%);
+}
+.previewLabel {
+  font-size: 11.5px;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+/* 카드를 축소 표시 (크기/배율은 인라인으로 템플릿마다 지정, 캡처는 원본 크기로 수행) */
+.previewFrame {
+  flex: 0 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+.scaler {
+  transform-origin: top left;
+}
+
+/* 캡처 전용 호스트: 화면 밖에 변형 없이 원본 크기로 둠 (display:none 이면 캡처 불가) */
+.exportHost {
+  position: fixed;
+  left: -10000px;
+  top: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 캐릭터 파일 패널 입력들 */
+.input {
+  width: 100%;
+  background: var(--bg-0);
+  border: 1px solid var(--border);
+  color: var(--text-0);
+  font-size: 13.5px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+.input:focus {
+  border-color: var(--accent-dim);
+}
+.input::placeholder {
+  color: var(--text-3);
+}
+.twoCol {
+  display: flex;
+  gap: 8px;
+}
+.monthCtrl {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-0);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0 6px;
+}
+.monthCtrl span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-0);
+}
+.monthCtrl button {
+  width: 30px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  color: var(--text-1);
+  font-size: 17px;
+  border-radius: 6px;
+}
+.monthCtrl button:hover {
+  background: var(--bg-2);
+  color: var(--text-0);
+}
+.areaSm {
+  width: 100%;
+  background: var(--bg-0);
+  border: 1px solid var(--border);
+  color: var(--text-0);
+  font-size: 13px;
+  padding: 8px 11px;
+  border-radius: var(--radius-sm);
+  outline: none;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 54px;
+  line-height: 1.55;
+  transition: border-color 0.15s ease;
+}
+.areaSm:focus {
+  border-color: var(--accent-dim);
+}
+.areaSm::placeholder {
+  color: var(--text-3);
+}
+.miniHead {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-top: 2px;
+}
+.checkEdit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.checkEdit > .input {
+  flex: 1;
+}
+.checkDel {
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  color: var(--text-3);
+  font-size: 11px;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  transition: color 0.12s ease;
+}
+.checkDel:hover {
+  color: var(--danger);
+}
+.colorInputRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.colorInput {
+  width: 48px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+.colorVal {
+  font-size: 13px;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+.rangeRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+.rangeRow input {
+  flex: 1;
+}
+.cfPointRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.patternRow {
+  display: flex;
+  gap: 6px;
+}
+.patternBtn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-1);
+  font-size: 12.5px;
+  padding: 8px 0;
+  border-radius: 7px;
+  transition: all 0.15s ease;
+}
+.patternBtn:hover {
+  border-color: var(--accent-dim);
+  color: var(--text-0);
+}
+.patternActive {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #18141f;
+  font-weight: 600;
+}
+.tplName {
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+  .panel {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}

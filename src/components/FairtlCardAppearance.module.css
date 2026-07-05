@@ -1,0 +1,236 @@
+.card {
+  width: 1400px;
+  height: 900px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #f4f4f7;
+  color: #20202a;
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+.content {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+/* 좌우 캐릭터 패널 */
+.side {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 30px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: #fff;
+}
+.sHeader {
+  position: relative;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+.sName {
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.1;
+  word-break: break-word;
+}
+.gender {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 30px;
+  color: var(--accent);
+}
+.sMeta {
+  font-size: 15px;
+  color: #6a6a78;
+  margin-top: 4px;
+}
+
+.imgRow {
+  display: flex;
+  margin-bottom: 14px;
+}
+.imgCol {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+}
+/* 두상·SD 정사각형 */
+.headBox {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  border: 2px solid var(--accent);
+  box-sizing: border-box;
+}
+.sdBox {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #eef0f4;
+  border: 2px dashed var(--accent);
+  box-sizing: border-box;
+}
+/* 전신 (세로 직사각형) */
+.bodyBox {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 314px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #d6d6e0;
+  box-sizing: border-box;
+}
+.placeholder {
+  color: #b6b6c0;
+}
+
+.chips {
+  display: block;
+  margin-bottom: 12px;
+}
+.chip {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #d0d0da;
+  vertical-align: middle;
+}
+/* 필수 외관 박스 */
+.reqBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.reqTag {
+  flex: 0 0 auto;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 5px;
+}
+.reqText {
+  flex: 1;
+  font-size: 13.5px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #3a3a46;
+}
+.checkList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  margin-bottom: 12px;
+}
+.checkItem {
+  font-size: 13px;
+  color: #3a3a46;
+  width: 45%;
+}
+.checkMark {
+  margin-right: 6px;
+  color: var(--accent);
+}
+.checkDone {
+  text-decoration: line-through;
+  color: #9a9aa8;
+}
+.sCredit {
+  margin-top: auto;
+  font-size: 12px;
+  color: #8a8a98;
+}
+
+/* 가운데 관계 영역 */
+.center {
+  flex: 0 0 240px;
+  padding: 28px 18px;
+  background: #ecedf2;
+  border-left: 1px solid #dcdce4;
+  border-right: 1px solid #dcdce4;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.cLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #6a6a78;
+  margin: 0 0 6px;
+}
+.cBox {
+  border: 1px solid #d4d4de;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #3a3a46;
+  margin-bottom: 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.cNarr {
+  flex: 1;
+}
+
+/* 하단 */
+.bottom {
+  flex: 0 0 auto;
+  height: 46px;
+  background: #20202a;
+  color: #e8e8ee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 26px;
+  font-size: 13px;
+}
+.credit {
+  color: #9a9aa8;
+}
+.mark {
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+/* 슬롯 내부 이미지 */
+.img {
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: center;
+}
+.imgEmpty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #b0b0bc;
+}

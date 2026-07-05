@@ -1,0 +1,183 @@
+/* 800x1200 고정 템플릿 — html2canvas 캡처 대상
+   주의: html2canvas는 flex `gap` 미지원 → 간격은 전부 margin 으로 처리 */
+.card {
+  width: 800px;
+  height: 1200px;
+  background: #14141a;
+  color: #f3f3f7;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 72px 64px 56px;
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+/* 포인트 컬러 상단 바 */
+.accentBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: var(--accent);
+}
+
+/* 1. 상단 */
+.header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 44px;
+}
+.name {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  word-break: break-word;
+}
+.alias {
+  font-size: 28px;
+  color: var(--accent);
+  margin-top: 14px;
+  font-weight: 500;
+}
+
+/* 2~3. 중단 */
+.middle {
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.imageBox {
+  position: relative;
+  flex: 0 0 320px;
+  width: 320px;
+  height: 440px;
+  margin-right: 40px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 1px var(--accent);
+  background: #1d1d25;
+}
+.image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: center;
+}
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5c5c6b;
+  font-size: 20px;
+  background: #1d1d25;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+  padding-top: 6px;
+}
+.info > .infoRow,
+.info > .tagBlock {
+  margin-bottom: 22px;
+}
+.infoRow {
+  display: block;
+}
+.infoLabel {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.infoValue {
+  display: block;
+  font-size: 26px;
+  color: #f3f3f7;
+  word-break: break-word;
+}
+
+.tagBlock {
+  display: block;
+}
+.tags {
+  display: block;
+}
+.tag {
+  display: inline-block;
+  font-size: 19px;
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--accent);
+  padding: 5px 14px;
+  border-radius: 999px;
+  line-height: 1.2;
+  margin: 0 8px 8px 0;
+}
+
+.palette {
+  display: block;
+  margin-top: 4px;
+}
+.swatch {
+  display: inline-block;
+  vertical-align: middle;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 3px solid #14141a;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
+  margin-right: 12px;
+}
+
+/* 4. 하단 서사 */
+.narrativeBox {
+  flex: 1;
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+.narrative {
+  font-size: 24px;
+  line-height: 1.75;
+  color: #d6d6e0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.narrativeEmpty {
+  font-size: 24px;
+  color: #44444f;
+  font-style: italic;
+}
+
+/* 5. 워터마크 */
+.watermark {
+  flex: 0 0 auto;
+  margin-top: 24px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: #5c5c6b;
+}
+.mark {
+  color: var(--accent);
+  font-size: 18px;
+  margin-right: 8px;
+}

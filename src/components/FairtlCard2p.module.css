@@ -1,0 +1,197 @@
+/* 800x1200 2인용 — html2canvas 대응: flex gap 미사용, margin 기반 */
+.card {
+  width: 800px;
+  height: 1200px;
+  background: #14141a;
+  color: #f3f3f7;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 56px 48px;
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+.accentBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: var(--accent);
+}
+
+/* 상단 */
+.header {
+  flex: 0 0 auto;
+  text-align: center;
+  margin-bottom: 34px;
+}
+.names {
+  line-height: 1.1;
+}
+.name {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  word-break: break-word;
+}
+.times {
+  font-size: 34px;
+  font-weight: 400;
+  color: #8a8a9a;
+  margin: 0 18px;
+  vertical-align: 2px;
+}
+.aliases {
+  margin-top: 12px;
+  font-size: 20px;
+  color: #9a9aa8;
+}
+.aliasDot {
+  margin: 0 12px;
+  color: #5c5c6b;
+}
+
+/* 중단 2분할 */
+.middle {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: stretch;
+}
+.vdiv {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 28px;
+  align-self: stretch;
+}
+.side {
+  flex: 1;
+  min-width: 0;
+}
+
+.imgStack {
+  margin-bottom: 22px;
+}
+.imgBox {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: #1d1d25;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 1px var(--accent);
+  margin-bottom: 14px;
+  box-sizing: border-box;
+}
+.imgBox:last-child {
+  margin-bottom: 0;
+}
+.img {
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: center;
+}
+.imgEmpty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5c5c6b;
+  font-size: 17px;
+}
+
+.info {
+  padding-top: 4px;
+}
+.infoRow {
+  display: block;
+  margin-bottom: 12px;
+}
+.infoLabel {
+  display: inline-block;
+  width: 64px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+.infoValue {
+  font-size: 19px;
+  color: #f3f3f7;
+  word-break: break-word;
+}
+
+.tags {
+  display: block;
+  margin-top: 6px;
+}
+.tag {
+  display: inline-block;
+  font-size: 15px;
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--accent);
+  padding: 3px 11px;
+  border-radius: 999px;
+  line-height: 1.25;
+  margin: 0 7px 7px 0;
+}
+
+.palette {
+  display: block;
+  margin-top: 12px;
+}
+.swatch {
+  display: inline-block;
+  vertical-align: middle;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #14141a;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
+  margin-right: 10px;
+}
+
+/* 하단 관계 서사 */
+.narrativeBox {
+  flex: 1;
+  margin-top: 30px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+.narrative {
+  font-size: 22px;
+  line-height: 1.75;
+  color: #d6d6e0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.narrativeEmpty {
+  font-size: 22px;
+  color: #44444f;
+  font-style: italic;
+}
+
+/* 워터마크 */
+.watermark {
+  flex: 0 0 auto;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: #5c5c6b;
+}
+.mark {
+  color: var(--accent);
+  font-size: 17px;
+  margin-right: 8px;
+}

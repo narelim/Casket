@@ -1,0 +1,308 @@
+/* 1400x900 가로형 캐릭터 파일 — html2canvas 대응: flex gap 미사용 */
+.card {
+  width: 1400px;
+  height: 900px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--main-bg);
+  color: var(--text-main);
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+/* 상/하단 장식 바 */
+.topBar,
+.bottomBar {
+  flex: 0 0 auto;
+  height: 44px;
+  background: var(--point);
+  color: var(--text-side);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+}
+.bottomBar {
+  gap: 0;
+  letter-spacing: 0.1em;
+}
+.deco {
+  margin: 0 18px;
+  font-size: 17px;
+  letter-spacing: 0.2em;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+/* ── 패널1: 좌측 사이드 ── */
+.side {
+  flex: 0 0 184px;
+  background: var(--side-bg);
+  color: var(--text-side);
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.sideHeader {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--point);
+}
+.points {
+  display: block;
+}
+.pointRow {
+  margin-bottom: 14px;
+}
+.pointNo {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+.pointBox {
+  position: relative;
+  width: 100%;
+  height: 96px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1.5px solid var(--point);
+  background: rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+}
+
+.sideColors {
+  display: block;
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+.sideChip {
+  display: inline-block;
+  vertical-align: middle;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  margin: 0 7px 7px 0;
+  border: 2px solid var(--side-bg);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.sideSpacer {
+  flex: 1;
+}
+
+.credit {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 12px;
+}
+.creditMark {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  margin-top: 6px;
+}
+.creditSrc {
+  display: block;
+  font-size: 11px;
+  opacity: 0.8;
+  margin-top: 4px;
+  word-break: break-word;
+}
+.barcode {
+  display: flex;
+  align-items: flex-end;
+  height: 26px;
+  gap: 2px;
+}
+.barcode > span {
+  display: inline-block;
+  height: 100%;
+  background: var(--text-side);
+}
+
+/* ── 패널2: 메인 정보 ── */
+.main {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 26px 30px;
+  border-left: 2px solid var(--point);
+  border-right: 2px solid var(--point);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.mainTop {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--point-ink);
+  margin-bottom: 18px;
+}
+.section {
+  margin-bottom: 20px;
+}
+.label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--point-ink);
+  border-bottom: 2px solid var(--point);
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+}
+.name {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1.1;
+  word-break: break-word;
+}
+.alias {
+  font-size: 18px;
+  color: var(--point-ink);
+  margin-top: 6px;
+}
+
+.infoGrid {
+  display: flex;
+}
+.infoItem {
+  margin-right: 38px;
+}
+.infoKey {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--point-ink);
+  margin-bottom: 3px;
+}
+.infoVal {
+  display: block;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.tags {
+  display: block;
+  margin-bottom: 20px;
+}
+.tag {
+  display: inline-block;
+  font-size: 15px;
+  color: var(--point-ink);
+  border: 1.5px solid var(--point);
+  padding: 3px 12px;
+  border-radius: 999px;
+  margin: 0 7px 7px 0;
+  line-height: 1.3;
+}
+
+.body {
+  font-size: 15px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── 패널3: 이미지 ── */
+.imgs {
+  flex: 0 0 312px;
+  padding: 26px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+.mainImgWrap {
+  padding: 8px;
+  border: 2px solid var(--point);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+.mainImgBox {
+  position: relative;
+  width: 256px;
+  height: 300px;
+  border-radius: 7px;
+  overflow: hidden;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+.otherLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--point-ink);
+  align-self: flex-start;
+  margin: 22px 0 8px;
+}
+.subImgBox {
+  position: relative;
+  width: 272px;
+  height: 210px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px dashed var(--point);
+  background: rgba(255, 255, 255, 0.4);
+  box-sizing: border-box;
+}
+
+/* ── 패널4: FREE NOTE ── */
+.note {
+  flex: 0 0 396px;
+  padding: 26px 22px;
+  border-left: 2px solid var(--point);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.noteHeader {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--point-ink);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--point);
+  margin-bottom: 14px;
+}
+.notePad {
+  flex: 1;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--point);
+}
+
+/* 공통 이미지 슬롯 내부 */
+.img {
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: center;
+}
+.imgEmpty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: rgba(120, 120, 130, 0.9);
+}

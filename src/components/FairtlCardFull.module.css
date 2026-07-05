@@ -1,0 +1,256 @@
+.card {
+  width: 1200px;
+  height: 1800px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #f6f6f8;
+  color: #20202a;
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+/* 상단 */
+.top {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 30px;
+  border-bottom: 2px solid #20202a;
+  background: #fff;
+}
+.topInfo {
+  flex: 1;
+  min-width: 0;
+}
+.topRight {
+  text-align: right;
+}
+.tName {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  word-break: break-word;
+}
+.tMeta {
+  font-size: 14px;
+  color: #6a6a78;
+  margin-top: 3px;
+}
+.topMark {
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #8a8a98;
+  padding: 0 24px;
+}
+
+/* 중단 */
+.content {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+.side {
+  flex: 1;
+  min-width: 0;
+  padding: 18px 18px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-sizing: border-box;
+}
+.heads {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* 두상 정사각형 */
+.headBox {
+  position: relative;
+  width: 190px;
+  height: 190px;
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--accent);
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+.chips {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 14px;
+}
+.chipItem {
+  text-align: center;
+  flex: 1;
+}
+.chipDot {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 0 auto 4px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #d0d0da;
+}
+.chipLbl {
+  font-size: 11px;
+  color: #6a6a78;
+}
+.themeChip {
+  display: block;
+  width: 44px;
+  height: 30px;
+  border-radius: 4px;
+  margin: 0 auto 4px;
+  border: 1px solid #d0d0da;
+}
+
+.costumeBox {
+  border: 1px solid #d0d0da;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-top: auto;
+  background: #fafafc;
+}
+.costumeHead {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #6a6a78;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.animalRow {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 14px;
+}
+.animalBox {
+  position: relative;
+  flex: 0 0 110px;
+  height: 110px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #eef0f4;
+  border: 1px dashed var(--accent);
+  box-sizing: border-box;
+  margin-right: 12px;
+}
+.animalName {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.animalVal {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 4px;
+  word-break: break-word;
+}
+
+.miniLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.textBlock {
+  margin-bottom: 12px;
+}
+.text {
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 4px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #3a3a46;
+}
+
+.clothRow {
+  display: flex;
+  margin-top: 8px;
+}
+.clothBox {
+  position: relative;
+  flex: 1;
+  height: 130px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #eef0f4;
+  border: 1px solid #d6d6e0;
+  box-sizing: border-box;
+}
+.clothBox:first-child {
+  margin-right: 10px;
+}
+
+/* 가운데 전신 */
+.center {
+  flex: 0 0 360px;
+  display: flex;
+  padding: 18px 12px;
+  background: #ececf1;
+  border-left: 1px solid #d6d6e0;
+  border-right: 1px solid #d6d6e0;
+  box-sizing: border-box;
+}
+.bodyBox {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #cfcfda;
+  box-sizing: border-box;
+}
+.bodyBox:first-child {
+  margin-right: 10px;
+}
+
+/* 하단 */
+.bottom {
+  flex: 0 0 auto;
+  height: 48px;
+  background: #20202a;
+  color: #e8e8ee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  font-size: 13px;
+}
+.credit {
+  color: #9a9aa8;
+}
+.mark {
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.img {
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: center;
+}
+.imgEmpty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #b0b0bc;
+}

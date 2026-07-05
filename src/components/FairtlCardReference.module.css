@@ -1,0 +1,363 @@
+.card {
+  width: 1600px;
+  height: 1000px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #cfd6de;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Noto Sans KR', sans-serif;
+  color: #20202a;
+}
+
+/* 배경화면 */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ── 플랫 창 크롬 ── */
+.win {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #d2d8e0;
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(30, 40, 55, 0.1);
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 2;
+}
+.tbar {
+  flex: 0 0 auto;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 0 12px;
+  background: #c9e4dd;
+  border-bottom: 1px solid #b4d6cd;
+}
+.tname {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3a5650;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tbtns {
+  display: flex;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+.tb {
+  width: 22px;
+  height: 18px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  line-height: 18px;
+  text-align: center;
+  color: #5a6660;
+}
+.tbClose {
+  background: #ef7676;
+  color: #fff;
+  font-weight: 700;
+}
+.wbody {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  padding: 10px;
+}
+
+/* 레이아웃 편집 모드 */
+.editing {
+  outline: 2px dashed #4a90d0;
+  outline-offset: -1px;
+  z-index: 20;
+}
+.editing .tbar {
+  cursor: move;
+}
+.resize {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  cursor: nwse-resize;
+  background: linear-gradient(135deg, transparent 45%, #4a90d0 45%, #4a90d0 70%, transparent 70%);
+  z-index: 21;
+}
+.iconEditing {
+  outline: 2px dashed #4a90d0;
+  outline-offset: 4px;
+  cursor: move;
+}
+
+/* 민트 이미지 창 */
+.mint .tbar {
+  background: #c9e4dd;
+}
+.wimg {
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: center;
+}
+.wimgEmpty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c0c6cf;
+  font-size: 14px;
+}
+
+/* Paint */
+.paintInner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+.paintCanvas {
+  flex: 1;
+  position: relative;
+  background: #fff;
+}
+.names {
+  position: absolute;
+  inset: 0;
+}
+.nameA {
+  position: absolute;
+  left: 6%;
+  top: 9%;
+}
+.nameB {
+  position: absolute;
+  right: 6%;
+  top: 40%;
+  text-align: right;
+}
+.times {
+  position: absolute;
+  left: 44%;
+  top: 30%;
+  font-size: 96px;
+  font-weight: 400;
+  line-height: 1;
+}
+.bigName {
+  display: block;
+  font-size: 62px;
+  font-weight: 700;
+  line-height: 1.05;
+  word-break: keep-all;
+}
+.subName {
+  display: block;
+  font-size: 22px;
+  color: #8a8a96;
+  margin-top: 8px;
+}
+
+.paintBottom {
+  flex: 0 0 auto;
+  display: flex;
+  border-top: 1px solid #dfe3ea;
+  background: #eef1f5;
+}
+.palette {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+}
+.palRow {
+  display: flex;
+  gap: 3px;
+}
+.palRow > span {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+.relBox {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #3a3a46;
+  border-left: 1px solid #dfe3ea;
+  background: #f6f8fb;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow: hidden;
+}
+
+/* 메모장 — 키워드 + 외관 */
+.npKw {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f6f7fa;
+  border-bottom: 1px solid #e6eaef;
+}
+.npTag {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4a5660;
+}
+.npTagEmpty {
+  font-size: 13px;
+  color: #b6bcc6;
+}
+.npText {
+  flex: 1;
+  background: #fff;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #2a2a34;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow: hidden;
+}
+
+/* 파일 탐색기 */
+.expList {
+  flex: 1;
+  background: #fff;
+  padding: 8px 6px;
+  overflow: hidden;
+}
+.expRow {
+  display: flex;
+  align-items: center;
+  font-size: 13.5px;
+  color: #2a2a34;
+  padding: 5px 8px;
+  border-radius: 3px;
+}
+.expRow:nth-child(even) {
+  background: #f5f7fb;
+}
+.expIcon {
+  flex: 0 0 auto;
+  width: 17px;
+  height: 14px;
+  margin-right: 10px;
+  border-radius: 2px;
+  background: #f3c34e;
+  border: 1px solid #d99f37;
+}
+
+/* 점선 아이콘 */
+.icon {
+  position: absolute;
+  width: 96px;
+  text-align: center;
+  z-index: 4;
+}
+.iconBox {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 6px;
+  overflow: hidden;
+}
+.iconImg {
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: center;
+}
+.iconDash {
+  position: absolute;
+  inset: 0;
+  border: 2px dashed #9aa4b0;
+  border-radius: 5px;
+}
+.iconName {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2a2a34;
+  word-break: break-word;
+}
+
+/* 우클릭 메뉴 (커미션 출처) */
+.ctx {
+  position: absolute;
+  background: #f7f8fa;
+  border: 1px solid #aab3be;
+  border-radius: 4px;
+  box-shadow: 0 8px 22px rgba(20, 30, 40, 0.25);
+  padding: 4px;
+  z-index: 6;
+}
+.ctxRow {
+  font-size: 13px;
+  color: #2a2a34;
+  padding: 8px 16px;
+  border-radius: 3px;
+}
+.ctxRow:first-child {
+  background: #d8e6f6;
+}
+.cursor {
+  position: absolute;
+  z-index: 7;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+/* 하단 작업표시줄 */
+.taskbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 16px;
+  z-index: 5;
+}
+.startBtn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #3a5a86;
+}
+.taskCredit,
+.anniv {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+.anniv {
+  margin-left: auto;
+  letter-spacing: 0.1em;
+}

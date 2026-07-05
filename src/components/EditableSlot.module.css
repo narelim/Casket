@@ -1,0 +1,154 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  outline: none;
+}
+
+.slot {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+}
+.editing {
+  border: 1px dashed var(--accent);
+  box-shadow: 0 0 0 2px rgba(185, 163, 255, 0.25);
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: center;
+  cursor: grab;
+  touch-action: none;
+}
+.editing .image:active {
+  cursor: grabbing;
+}
+
+.empty {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.empty:hover {
+  border-color: var(--accent-dim);
+  color: var(--text-0);
+}
+.plus {
+  font-size: 22px;
+  line-height: 1;
+}
+.emptyLabel {
+  font-size: 12px;
+}
+
+/* 모서리 핸들 */
+.handle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
+  border: 2px solid #18141f;
+  border-radius: 50%;
+  z-index: 2;
+  touch-action: none;
+}
+.tl {
+  top: -8px;
+  left: -8px;
+  cursor: nwse-resize;
+}
+.tr {
+  top: -8px;
+  right: -8px;
+  cursor: nesw-resize;
+}
+.bl {
+  bottom: -8px;
+  left: -8px;
+  cursor: nesw-resize;
+}
+.br {
+  bottom: -8px;
+  right: -8px;
+  cursor: nwse-resize;
+}
+
+/* 하단 툴바 */
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hint {
+  font-size: 10.5px;
+  color: var(--text-3);
+  line-height: 1.4;
+}
+.toolBtns {
+  display: flex;
+  gap: 8px;
+}
+.toolBtn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-1);
+  font-size: 12.5px;
+  padding: 7px;
+  border-radius: 7px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.toolBtn:hover {
+  border-color: var(--border-strong);
+  color: var(--text-0);
+}
+.done {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #18141f;
+  font-weight: 600;
+}
+.done:hover {
+  filter: brightness(1.08);
+  color: #18141f;
+}
+
+.idleBar {
+  display: flex;
+  gap: 12px;
+}
+.link,
+.linkDanger {
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  padding: 2px 0;
+  color: var(--text-2);
+  transition: color 0.12s ease;
+}
+.link:hover {
+  color: var(--text-0);
+}
+.linkDanger {
+  color: var(--text-3);
+}
+.linkDanger:hover {
+  color: var(--danger);
+}
