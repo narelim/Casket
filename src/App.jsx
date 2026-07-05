@@ -197,8 +197,8 @@ export default function App() {
 function EmptyState({ onAdd, hasAny }) {
   return (
     <div className={styles.empty}>
-      <div className={styles.emptyMark}>✦</div>
-      <h2 className={styles.emptyTitle}>Casket</h2>
+      <div className={`${styles.emptyMark} sparkle`}>✦</div>
+      <h2 className={`${styles.emptyTitle} wordmark`}>Casket</h2>
       <p className={styles.emptyText}>
         {hasAny ? '왼쪽에서 캐릭터를 선택하세요.' : '첫 자캐를 기록해보세요.'}
       </p>

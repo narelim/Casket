@@ -1,162 +1,210 @@
 .wrap {
   position: sticky;
   top: 40px;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
 }
 
 .previewLabel {
   font-size: 11.5px;
   color: var(--text-3);
   letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
+  text-align: center;
 }
 
-.card {
-  background: var(--bg-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
-}
-
-.banner {
-  height: 92px;
-  background: linear-gradient(135deg, var(--accent-dim) 0%, #2a2440 60%, var(--bg-2) 100%);
-  display: flex;
-  align-items: flex-end;
-  padding-left: 22px;
+/* ── 영수증 ── */
+.receipt {
+  --paper: #fbf8ef;
   position: relative;
+  width: 300px;
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--paper);
+  filter: drop-shadow(0 8px 18px rgba(47, 42, 30, 0.18));
 }
-.avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 14px;
-  background: var(--bg-2);
-  border: 3px solid var(--bg-1);
-  color: var(--text-0);
-  display: grid;
-  place-items: center;
-  font-size: 26px;
-  font-weight: 700;
-  text-transform: uppercase;
-  transform: translateY(50%);
+/* 위·아래 톱니(찢긴) 가장자리 */
+.receipt::before,
+.receipt::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 9px;
+  background-repeat: repeat-x;
+  background-size: 16px 9px;
+}
+.receipt::before {
+  top: -9px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 9 L8 0 L16 9 Z' fill='%23fbf8ef'/%3E%3C/svg%3E");
+}
+.receipt::after {
+  bottom: -9px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Cpath d='M0 0 L8 9 L16 0 Z' fill='%23fbf8ef'/%3E%3C/svg%3E");
 }
 
 .body {
-  padding: 38px 22px 24px;
+  padding: 20px 22px 22px;
+  color: #2f2a1e;
+}
+
+/* 헤더 */
+.top {
+  text-align: center;
+}
+.brand {
+  display: block;
+  font-size: 26px;
+  color: #2f2a1e;
+  line-height: 1;
+}
+.brandSub {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: #6d6450;
+  margin-top: 6px;
+  padding-left: 0.32em;
+}
+
+.mainBar {
+  height: 8px;
+  margin: 14px 0 4px;
+  border: 1px solid #2f2a1e;
 }
 
 .name {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
   letter-spacing: -0.01em;
   word-break: break-word;
+  margin-top: 12px;
 }
 .alias {
   font-size: 13px;
-  color: var(--accent);
+  color: #6d6450;
+  text-align: center;
   margin-top: 3px;
 }
 
-.metaRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
+/* 점선 구분 */
+.dash {
+  border-top: 1.5px dashed #2f2a1e;
+  margin: 14px 0;
 }
-.metaItem {
-  font-size: 12px;
-  color: var(--text-1);
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  padding: 3px 9px;
-  border-radius: 6px;
+
+/* 리더 점선 행: 나이 ······ 19 */
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.row {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  font-size: 13px;
+}
+.k {
+  flex: 0 0 auto;
+  font-weight: 700;
+  color: #2f2a1e;
+}
+.leader {
+  flex: 1;
+  border-bottom: 1.5px dotted #9a8d73;
+  transform: translateY(-4px);
+}
+.v {
+  flex: 0 0 auto;
+  color: #2f2a1e;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 팔레트 색상 점 */
+.swatchDot {
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #2f2a1e;
+  align-self: center;
 }
 
 .tagline {
-  font-size: 13.5px;
-  color: var(--text-1);
+  font-size: 13px;
+  color: #4c4636;
   line-height: 1.6;
-  margin-top: 14px;
+  text-align: center;
   font-style: italic;
 }
-
 .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 14px;
-}
-.tag {
-  font-size: 11.5px;
-  color: var(--accent);
-  background: rgba(185, 163, 255, 0.1);
-  padding: 3px 8px;
-  border-radius: 6px;
+  font-size: 12px;
+  color: #6d6450;
+  text-align: center;
+  margin-top: 8px;
+  letter-spacing: 0.02em;
+  word-break: keep-all;
 }
 
-.palette {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
-}
-.swatch {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid var(--bg-1);
-  box-shadow: 0 0 0 1px var(--border-strong);
-  cursor: default;
-}
-
-.divider {
-  height: 1px;
-  background: var(--border);
-  margin: 20px 0 4px;
-}
-
+/* 섹션 */
 .section {
-  margin-top: 16px;
+  margin-top: 12px;
+}
+.section:first-of-type {
+  margin-top: 0;
 }
 .sectionLabel {
-  font-size: 11px;
-  color: var(--text-3);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #2f2a1e;
   margin-bottom: 5px;
 }
 .sectionText {
-  font-size: 13px;
-  color: var(--text-1);
+  font-size: 12.5px;
+  color: #4c4636;
   line-height: 1.7;
   white-space: pre-wrap;
   word-break: break-word;
+}
+.kws {
+  font-size: 12px;
+  color: #6d6450;
+  margin-top: 6px;
+  word-break: keep-all;
+}
+
+.sectionTitle {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-align: center;
+  color: #2f2a1e;
+  padding-left: 0.14em;
 }
 
 /* 타임라인 */
 .timeline {
   list-style: none;
-  margin: 4px 0 0;
+  margin: 0;
   padding: 0;
 }
 .tlItem {
   position: relative;
-  padding-left: 18px;
-  padding-bottom: 16px;
+  padding-left: 22px;
+  padding-bottom: 14px;
 }
 .tlItem:last-child {
   padding-bottom: 0;
 }
-/* 연결선 */
 .tlItem::before {
   content: '';
   position: absolute;
-  left: 4px;
-  top: 5px;
-  bottom: -1px;
+  left: 6px;
+  top: 15px;
+  bottom: 2px;
   width: 1.5px;
-  background: var(--border-strong);
+  background: #9a8d73;
 }
 .tlItem:last-child::before {
   display: none;
@@ -164,31 +212,64 @@
 .tlNode {
   position: absolute;
   left: 0;
-  top: 3px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--bg-1);
-  border: 2px solid var(--accent);
+  top: 0;
+  font-size: 14px;
+  line-height: 1;
+  color: #2f2a1e;
 }
 .tlPeriod {
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.02em;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #2f2a1e;
 }
 .tlTitle {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-0);
-  margin-top: 1px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #4c4636;
+  margin-top: 2px;
   word-break: break-word;
 }
 .tlContent {
-  font-size: 12.5px;
-  color: var(--text-1);
+  font-size: 12px;
+  color: #6d6450;
   line-height: 1.65;
   margin-top: 3px;
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+/* 영수증 하단 — 바코드 */
+.barcode {
+  height: 44px;
+  margin: 2px 0 8px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #2f2a1e 0,
+    #2f2a1e 2px,
+    transparent 2px,
+    transparent 4px,
+    #2f2a1e 4px,
+    #2f2a1e 5px,
+    transparent 5px,
+    transparent 8px,
+    #2f2a1e 8px,
+    #2f2a1e 11px,
+    transparent 11px,
+    transparent 13px
+  );
+}
+.code {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-align: center;
+  color: #2f2a1e;
+  font-variant-numeric: tabular-nums;
+}
+.thanks {
+  font-size: 9.5px;
+  letter-spacing: 0.24em;
+  text-align: center;
+  color: #9a8d73;
+  margin-top: 8px;
+  padding-left: 0.24em;
 }

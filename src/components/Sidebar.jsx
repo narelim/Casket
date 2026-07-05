@@ -26,9 +26,9 @@ export default function Sidebar({
   return (
     <aside className={styles.sidebar}>
       <header className={styles.brand}>
-        <span className={styles.logo}>✦</span>
+        <span className={`${styles.logo} sparkle`}>✦</span>
         <div>
-          <h1 className={styles.title}>Casket</h1>
+          <h1 className={`${styles.title} wordmark`}>Casket</h1>
           <p className={styles.subtitle}>자캐 아카이브</p>
         </div>
       </header>
@@ -90,7 +90,7 @@ export default function Sidebar({
 
       <div className={styles.fairtlWrap}>
         <button className={styles.fairtlBtn} onClick={onOpenFairtl}>
-          ✦ 페어틀 만들기
+          <span className="sparkle">✦</span> 페어틀 만들기
         </button>
       </div>
 

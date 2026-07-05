@@ -5,23 +5,24 @@
   margin-bottom: 14px;
 }
 .label {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-2);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
   letter-spacing: 0.02em;
 }
 .addBtn {
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--ink);
   color: var(--text-1);
-  font-size: 12.5px;
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
-  transition: border-color 0.15s ease, color 0.15s ease;
+  font-family: inherit;
+  font-size: 13.5px;
+  padding: 5px 12px;
+  border-radius: 3px;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 .addBtn:hover {
-  border-color: var(--accent-dim);
-  color: var(--text-0);
+  background: var(--ink);
+  color: var(--bg-1);
 }
 .empty {
   font-size: 12.5px;
@@ -47,7 +48,7 @@
   top: 4px;
   bottom: -16px;
   width: 2px;
-  background: var(--border);
+  background: var(--ink);
 }
 .item:last-child::before {
   bottom: auto;
@@ -62,7 +63,7 @@
   height: 12px;
   border-radius: 50%;
   background: var(--bg-1);
-  border: 2px solid var(--accent-dim);
+  border: 2px solid var(--ink);
   z-index: 1;
 }
 .dragging {
@@ -74,9 +75,9 @@
 }
 
 .body {
-  background: var(--bg-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  background: var(--bg-2);
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -112,13 +113,14 @@
 .period {
   flex: 1;
   min-width: 0;
-  background: var(--bg-0);
-  border: 1px solid var(--border);
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 500;
+  background: #fcf9ef;
+  border: 1.6px dashed var(--ink);
+  color: var(--text-0);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
   padding: 7px 10px;
-  border-radius: 7px;
+  border-radius: 4px;
   outline: none;
 }
 .period::placeholder {
@@ -126,7 +128,7 @@
   font-weight: 400;
 }
 .period:focus {
-  border-color: var(--accent-dim);
+  border-style: solid;
 }
 
 .del {
@@ -146,12 +148,13 @@
 .title,
 .content {
   width: 100%;
-  background: var(--bg-0);
-  border: 1px solid var(--border);
+  background: #fcf9ef;
+  border: 1.6px dashed var(--ink);
   color: var(--text-0);
-  font-size: 13.5px;
+  font-family: inherit;
+  font-size: 15px;
   padding: 8px 11px;
-  border-radius: 7px;
+  border-radius: 4px;
   outline: none;
   transition: border-color 0.15s ease;
 }
@@ -161,7 +164,7 @@
 }
 .title:focus,
 .content:focus {
-  border-color: var(--accent-dim);
+  border-style: solid;
 }
 .content {
   resize: vertical;

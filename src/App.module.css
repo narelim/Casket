@@ -1,21 +1,43 @@
 .app {
+  /* ── 종이 테마 (편집 화면 전체) ── */
+  --bg-0: #e7ddc6; /* 바탕(책상) */
+  --bg-1: #f7f1e3; /* 종이 표면 — 패널/카드/사이드바 */
+  --bg-2: #efe7d3; /* hover 표면 */
+  --bg-3: #e2d7bd; /* 더 짙은 표면 */
+  --border: #cdbf9c; /* 옅은 구분선 */
+  --border-strong: #2f2a1e; /* 어두운 잉크 선 (프레임) */
+  --ink: #2f2a1e;
+
+  --text-0: #2c2619;
+  --text-1: #4c4636;
+  --text-2: #6d6450;
+  --text-3: #9a8d73;
+
+  --accent: #6f5fb0;
+  --accent-dim: #9384c7;
+  --danger: #b8433f;
+  --on-accent: #f7f1e3;
+
   display: grid;
   grid-template-columns: 300px 1fr;
   height: 100vh;
   width: 100vw;
+  background: var(--bg-0);
+  color: var(--text-0);
+  font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
 }
 
 .main {
   height: 100vh;
   overflow-y: auto;
-  background: radial-gradient(120% 120% at 100% 0%, #14141a 0%, var(--bg-0) 55%);
+  background: var(--bg-0);
 }
 
 .editor {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 340px;
+  grid-template-columns: minmax(0, 1fr) 360px;
   gap: 28px;
-  max-width: 1180px;
+  max-width: 1220px;
   margin: 0 auto;
   padding: 40px 44px 64px;
   align-items: start;
@@ -52,10 +74,10 @@
   margin-bottom: 8px;
 }
 .emptyTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 30px;
+  font-family: 'AMORIA', 'Playfair Display', serif;
+  font-size: 34px;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 .emptyText {
   color: var(--text-2);
@@ -64,7 +86,7 @@
 }
 .emptyBtn {
   background: var(--accent);
-  color: #18141f;
+  color: var(--on-accent);
   border: none;
   font-weight: 600;
   font-size: 14px;
@@ -73,7 +95,7 @@
   transition: filter 0.15s ease;
 }
 .emptyBtn:hover {
-  filter: brightness(1.08);
+  filter: brightness(1.06);
 }
 
 /* toast */
@@ -82,13 +104,13 @@
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--bg-3);
-  color: var(--text-0);
-  border: 1px solid var(--border-strong);
+  background: var(--ink, #25252f);
+  color: #f7f1e3;
+  border: 1px solid var(--ink, #3a3a48);
   padding: 11px 18px;
   border-radius: 10px;
   font-size: 13.5px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 30px rgba(47, 42, 30, 0.35);
   animation: toastIn 0.2s ease;
   z-index: 50;
 }

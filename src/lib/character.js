@@ -4,6 +4,7 @@ export const FIELDS = [
   { key: 'alias', label: '별칭', type: 'text', placeholder: '닉네임 · 이명' },
   { key: 'age', label: '나이', type: 'text', placeholder: '예: 19, 불명' },
   { key: 'gender', label: '성별', type: 'text', placeholder: '성별' },
+  { key: 'height', label: '키', type: 'text', placeholder: '예: 172' },
   { key: 'birthday', label: '생일', type: 'birthday' },
   { key: 'tagline', label: '한줄소개', type: 'text', placeholder: '한 문장으로 표현한다면', full: true },
   { key: 'appearance', label: '외관설명', type: 'textarea', placeholder: '머리/눈 색, 체형, 복장 등' },
@@ -26,12 +27,15 @@ export function createCharacter(overrides = {}) {
     alias: '',
     age: '',
     gender: '',
+    height: '',
     birthday: '',
     tagline: '',
     appearance: '',
     personality: '',
     background: '',
     tags: '',
+    mainColor: '', // 대표색 (단일 hex)
+    keywords: [], // 성격 키워드 (문자열 배열)
     colors: [], // [{ id, hex, name }]
     settings: [], // [{ id, category, content }]
     timeline: [], // [{ id, period, title, content }]
@@ -40,6 +44,12 @@ export function createCharacter(overrides = {}) {
     updatedAt: Date.now(),
   }
   const merged = { ...base, ...overrides, id: overrides.id || base.id }
+
+  // 대표색 / 키워드 정규화 (불러온 데이터 방어)
+  merged.mainColor = typeof merged.mainColor === 'string' ? merged.mainColor : ''
+  merged.keywords = Array.isArray(merged.keywords)
+    ? merged.keywords.map((k) => (typeof k === 'string' ? k.trim() : '')).filter(Boolean)
+    : []
 
   // colors 정규화 (불러온 데이터 방어)
   merged.colors = Array.isArray(merged.colors)

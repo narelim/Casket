@@ -1,5 +1,77 @@
+/* ── 외부 폰트 ── (@import 는 반드시 최상단) */
+@import url('https://fonts.cdnfonts.com/css/amoria');
+
+/* Casket 로고: AMORIA / 편집폼: 학교안심 출석부 / 미리보기·UI: Pretendard */
+@font-face {
+  font-family: 'SchoolSafetyAttendanceBook';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimChulseokbuTTF-L.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SchoolSafetyAttendanceBook';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimChulseokbuTTF-B.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-display: swap;
+}
+
 :root {
-  /* dark, muted palette */
+  /* 기본(다크) — 페어틀 에디터가 이 값을 사용 */
   --bg-0: #0e0e12;
   --bg-1: #16161c;
   --bg-2: #1d1d25;
@@ -16,10 +88,13 @@
   --accent-dim: #6f5fb0;
   --danger: #ff7b85;
 
+  /* 필드에 올라가는 버튼 텍스트 색 (테마별로 덮어씀) */
+  --on-accent: #18141f;
+
   --radius: 12px;
   --radius-sm: 8px;
 
-  font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, sans-serif;
+  font-family: 'Pretendard', 'Noto Sans KR', system-ui, -apple-system, sans-serif;
   color: var(--text-0);
   background: var(--bg-0);
   font-synthesis: none;
@@ -50,8 +125,23 @@ button {
 }
 
 input,
-textarea {
+textarea,
+select {
   font-family: inherit;
+}
+
+/* Casket 워드마크 */
+.wordmark {
+  font-family: 'AMORIA', 'Playfair Display', serif;
+  letter-spacing: 0.04em;
+}
+
+/* 어떤 폰트에서도 깨지지 않는 반짝이 */
+.sparkle {
+  font-family: 'Apple SD Gothic Neo', 'Segoe UI Symbol', 'Noto Sans Symbols 2',
+    'Apple Symbols', sans-serif;
+  font-style: normal;
+  line-height: 1;
 }
 
 ::-webkit-scrollbar {
