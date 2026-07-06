@@ -15,6 +15,7 @@ import {
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import styles from './TimelineEditor.module.css'
+import AutoTextarea from './AutoTextarea.jsx'
 import { createTimelineEvent } from '../lib/character.js'
 
 function SortableEvent({ ev, onField, onRemove }) {
@@ -60,11 +61,10 @@ function SortableEvent({ ev, onField, onRemove }) {
           placeholder="제목"
           onChange={(e) => onField('title', e.target.value)}
         />
-        <textarea
+        <AutoTextarea
           className={styles.content}
           value={ev.content}
           placeholder="내용"
-          rows={2}
           onChange={(e) => onField('content', e.target.value)}
         />
       </div>

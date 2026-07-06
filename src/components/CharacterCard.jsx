@@ -94,11 +94,15 @@ export default function CharacterCard({ character }) {
           {sections.length > 0 && <div className={styles.dash} />}
           {sections.map((s, i) => (
             <div key={i} className={styles.section}>
-              <p className={styles.sectionLabel}>{s.label}</p>
+              <div className={styles.sectionHeadRow}>
+                <p className={styles.sectionLabel}>{s.label}</p>
+                {s.keywords && s.keywords.length > 0 && (
+                  <span className={styles.kwsInline}>
+                    {s.keywords.map((k) => `#${k}`).join(' ')}
+                  </span>
+                )}
+              </div>
               {s.value?.trim() && <p className={styles.sectionText}>{s.value}</p>}
-              {s.keywords && s.keywords.length > 0 && (
-                <p className={styles.kws}>{s.keywords.map((k) => `#${k}`).join('  ')}</p>
-              )}
             </div>
           ))}
 

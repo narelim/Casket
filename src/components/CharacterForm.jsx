@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styles from './CharacterForm.module.css'
 import TimelineEditor from './TimelineEditor.jsx'
+import AutoTextarea from './AutoTextarea.jsx'
 import { createColor, createSetting, parseBirthday, formatBirthday } from '../lib/character.js'
 
 const MONTHS = Array.from({ length: 12 }, (_, i) => i + 1)
@@ -115,7 +116,7 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
 
       {/* 이름 · 별칭 · 대표색 */}
       <div className={styles.rowIdentity}>
-        <label className={`${styles.field} ${styles.grow2}`}>
+        <label className={`${styles.field} ${styles.idName}`}>
           <span className={styles.inlineLabel}>이름</span>
           <input
             className={styles.input}
@@ -124,7 +125,7 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
             onChange={(e) => update('name', e.target.value)}
           />
         </label>
-        <label className={`${styles.field} ${styles.grow}`}>
+        <label className={`${styles.field} ${styles.idAlias}`}>
           <span className={styles.inlineLabel}>별칭</span>
           <input
             className={styles.input}
@@ -195,7 +196,7 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
 
       {/* 생일 · 태그 */}
       <div className={styles.rowBirthTag}>
-        <label className={styles.field}>
+        <label className={`${styles.field} ${styles.bdField}`}>
           <span className={styles.inlineLabel}>생일</span>
           <BirthdayField
             id="f-birthday"
@@ -203,7 +204,7 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
             onChange={(v) => update('birthday', v)}
           />
         </label>
-        <label className={`${styles.field} ${styles.grow}`}>
+        <label className={`${styles.field} ${styles.grow2}`}>
           <span className={styles.inlineLabel}>태그</span>
           <input
             className={styles.input}
@@ -220,11 +221,10 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
           <div className={styles.blockHead}>
             <span className={styles.blockLabel}>외관 설명</span>
           </div>
-          <textarea
+          <AutoTextarea
             className={styles.textarea}
             value={character.appearance ?? ''}
             placeholder="머리/눈 색, 체형, 복장 등"
-            rows={7}
             onChange={(e) => update('appearance', e.target.value)}
           />
         </div>
@@ -307,11 +307,10 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
           <div className={styles.blockHead}>
             <span className={styles.blockLabel}>성격</span>
           </div>
-          <textarea
+          <AutoTextarea
             className={styles.textarea}
             value={character.personality ?? ''}
             placeholder="성격, 말투, 습관 등"
-            rows={7}
             onChange={(e) => update('personality', e.target.value)}
           />
         </div>
@@ -410,11 +409,10 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
             {settings.map((s) => (
               <div key={s.id} className={styles.catRow}>
                 <span className={styles.catName}>{s.category}</span>
-                <textarea
+                <AutoTextarea
                   className={`${styles.textarea} ${styles.catText}`}
                   value={s.content}
                   placeholder={`${s.category}에 대해 적어보세요`}
-                  rows={2}
                   onChange={(e) => updateSetting(s.id, e.target.value)}
                 />
                 <button

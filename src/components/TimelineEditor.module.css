@@ -76,7 +76,7 @@
 
 .body {
   background: var(--bg-2);
-  border: 1.5px solid var(--ink);
+  border: 1.5px solid var(--border);
   border-radius: 4px;
   padding: 12px;
   display: flex;
@@ -114,7 +114,7 @@
   flex: 1;
   min-width: 0;
   background: #fcf9ef;
-  border: 1.6px dashed var(--ink);
+  border: 1.6px dashed var(--dash);
   color: var(--text-0);
   font-family: inherit;
   font-size: 15px;
@@ -149,7 +149,7 @@
 .content {
   width: 100%;
   background: #fcf9ef;
-  border: 1.6px dashed var(--ink);
+  border: 1.6px dashed var(--dash);
   color: var(--text-0);
   font-family: inherit;
   font-size: 15px;
@@ -167,7 +167,8 @@
   border-style: solid;
 }
 .content {
-  resize: vertical;
+  resize: none;
+  overflow: hidden;
   min-height: 56px;
   line-height: 1.6;
 }
