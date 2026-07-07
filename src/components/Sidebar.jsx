@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import styles from './Sidebar.module.css'
 import { parseTags } from '../lib/character.js'
+import { contrastText } from '../lib/color.js'
 
 export default function Sidebar({
   characters,
@@ -63,7 +64,16 @@ export default function Sidebar({
                 className={`${styles.item} ${c.id === selectedId ? styles.active : ''}`}
                 onClick={() => onSelect(c.id)}
               >
-                <span className={styles.avatar}>{(c.name || '?').slice(0, 1)}</span>
+                <span
+                  className={styles.avatar}
+                  style={
+                    c.mainColor
+                      ? { background: c.mainColor, color: contrastText(c.mainColor) }
+                      : undefined
+                  }
+                >
+                  {(c.name || '?').slice(0, 1)}
+                </span>
                 <span className={styles.itemBody}>
                   <span className={styles.itemName}>{c.name || '이름 없음'}</span>
                   <span className={styles.itemMeta}>

@@ -103,14 +103,9 @@ export default function TimelineEditor({ timeline, onChange }) {
     <div>
       <div className={styles.head}>
         <span className={styles.label}>타임라인</span>
-        <button type="button" className={styles.addBtn} onClick={addEvent}>
-          + 사건 추가
-        </button>
       </div>
 
-      {timeline.length === 0 ? (
-        <p className={styles.empty}>사건이 없습니다 · 추가해보세요</p>
-      ) : (
+      {timeline.length > 0 && (
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
           <SortableContext items={timeline.map((t) => t.id)} strategy={verticalListSortingStrategy}>
             <div className={styles.list}>
@@ -126,6 +121,14 @@ export default function TimelineEditor({ timeline, onChange }) {
           </SortableContext>
         </DndContext>
       )}
+
+      <button
+        type="button"
+        className={`${styles.addBar} ${timeline.length > 0 ? styles.addBarGap : ''}`}
+        onClick={addEvent}
+      >
+        + 사건 추가
+      </button>
     </div>
   )
 }

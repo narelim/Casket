@@ -5,11 +5,11 @@
   --bg-2: #efe7d3; /* hover 표면 */
   --bg-3: #e2d7bd; /* 더 짙은 표면 */
   --border: #cdbf9c; /* 옅은 구분선 */
-  --border-strong: #2f2a1e; /* 어두운 잉크 선 (프레임) */
-  --ink: #2f2a1e;
-  --dash: #b3a179; /* 입력란 점선 — 배경보다 살짝 진한 은은한 탄색 (프레임보다 훨씬 옅게) */
+  --border-strong: #2f2a1e; /* 사이드바 선택 표시 등 */
+  --ink: #7a6f50; /* 구분선/프레임 — 배경보다 어둡고, 글씨보다는 옅은 중간 갈색 */
+  --dash: #b3a179; /* 입력란 점선 — 구분선보다 옅은 탄색 */
 
-  --text-0: #2c2619;
+  --text-0: #2c2619; /* 필드 글씨 — 가장 짙게 */
   --text-1: #4c4636;
   --text-2: #6d6450;
   --text-3: #9a8d73;
@@ -105,9 +105,9 @@
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--ink, #25252f);
+  background: #2c2619;
   color: #f7f1e3;
-  border: 1px solid var(--ink, #3a3a48);
+  border: 1px solid #2c2619;
   padding: 11px 18px;
   border-radius: 10px;
   font-size: 13.5px;

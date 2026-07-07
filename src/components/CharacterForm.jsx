@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './CharacterForm.module.css'
 import TimelineEditor from './TimelineEditor.jsx'
 import AutoTextarea from './AutoTextarea.jsx'
@@ -48,9 +48,23 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
   const [draft, setDraft] = useState(null) // 색상 추가 중 { hex, name }
   const [catDraft, setCatDraft] = useState(null) // 카테고리 이름 문자열
   const [kwDraft, setKwDraft] = useState(null) // 키워드 문자열
+  const [saved, setSaved] = useState(true) // true=자동 저장됨 / false=편집 중
+  const savedTimer = useRef(null)
+  const lastUpdated = useRef(character.updatedAt)
   const colors = character.colors ?? []
   const settings = character.settings ?? []
   const keywords = character.keywords ?? []
+
+  // updatedAt 이 실제로 바뀔 때만 '편집 중' → 잠시 뒤 '자동 저장됨'
+  // (값 비교라 StrictMode 이중 실행에도 오작동하지 않음. 저장은 App에서 즉시 수행됨)
+  useEffect(() => {
+    if (character.updatedAt === lastUpdated.current) return
+    lastUpdated.current = character.updatedAt
+    setSaved(false)
+    clearTimeout(savedTimer.current)
+    savedTimer.current = setTimeout(() => setSaved(true), 900)
+    return () => clearTimeout(savedTimer.current)
+  }, [character.updatedAt])
 
   function update(key, value) {
     onChange({ [key]: value })
@@ -106,7 +120,8 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
         <div className={styles.headText}>
           <h2 className={styles.heading}>{character.name || '이름 없음'}</h2>
           <p className={styles.updated}>
-            편집 중 <span className="sparkle">✦</span> 자동 저장됨
+            {saved ? '자동 저장됨' : '편집 중'}{' '}
+            <span className={`sparkle ${styles.spark} ${saved ? '' : styles.spinning}`}>✦</span>
           </p>
         </div>
         <button className={styles.delBtn} onClick={onDelete}>
@@ -232,9 +247,41 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
         <div className={styles.block}>
           <div className={styles.blockHead}>
             <span className={styles.blockLabel}>컬러 팔레트</span>
+          </div>
+
+          <div className={styles.chips}>
+            {colors.map((c) => (
+              <div key={c.id} className={styles.chipWrap}>
+                <button
+                  type="button"
+                  className={styles.chip}
+                  style={{ background: c.hex }}
+                  onClick={() => copyHex(c.hex)}
+                  aria-label={`${c.name || c.hex} 복사`}
+                />
+                <button
+                  type="button"
+                  className={styles.chipDel}
+                  title="삭제"
+                  onClick={() => removeColor(c.id)}
+                >
+                  ✕
+                </button>
+                <span className={styles.chipTip}>
+                  {c.name && <strong>{c.name}</strong>}
+                  <em>{c.hex.toUpperCase()}</em>
+                </span>
+              </div>
+            ))}
             {!draft && (
-              <button type="button" className={styles.ghostBtn} onClick={startAddColor}>
-                + 색상 추가
+              <button
+                type="button"
+                className={styles.addSquare}
+                onClick={startAddColor}
+                title="색상 추가"
+                aria-label="색상 추가"
+              >
+                +
               </button>
             )}
           </div>
@@ -259,44 +306,25 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
                   if (e.key === 'Escape') setDraft(null)
                 }}
               />
-              <span className={styles.draftHex}>{draft.hex.toUpperCase()}</span>
-              <button type="button" className={styles.draftAdd} onClick={confirmAddColor}>
-                추가
+              <button
+                type="button"
+                className={styles.draftAdd}
+                onClick={confirmAddColor}
+                title="추가"
+                aria-label="추가"
+              >
+                ✓
               </button>
-              <button type="button" className={styles.draftCancel} onClick={() => setDraft(null)}>
-                취소
+              <button
+                type="button"
+                className={styles.draftCancel}
+                onClick={() => setDraft(null)}
+                title="취소"
+                aria-label="취소"
+              >
+                ✕
               </button>
             </div>
-          )}
-
-          {colors.length > 0 ? (
-            <div className={styles.chips}>
-              {colors.map((c) => (
-                <div key={c.id} className={styles.chipWrap}>
-                  <button
-                    type="button"
-                    className={styles.chip}
-                    style={{ background: c.hex }}
-                    onClick={() => copyHex(c.hex)}
-                    aria-label={`${c.name || c.hex} 복사`}
-                  />
-                  <button
-                    type="button"
-                    className={styles.chipDel}
-                    title="삭제"
-                    onClick={() => removeColor(c.id)}
-                  >
-                    ✕
-                  </button>
-                  <span className={styles.chipTip}>
-                    {c.name && <strong>{c.name}</strong>}
-                    <em>{c.hex.toUpperCase()}</em>
-                  </span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            !draft && <p className={styles.hint}>아직 색상이 없습니다</p>
           )}
         </div>
       </div>
@@ -318,9 +346,31 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
         <div className={styles.block}>
           <div className={styles.blockHead}>
             <span className={styles.blockLabel}>키워드</span>
+          </div>
+
+          <div className={styles.kwList}>
+            {keywords.map((k) => (
+              <span key={k} className={styles.kw}>
+                {k}
+                <button
+                  type="button"
+                  className={styles.kwDel}
+                  title="삭제"
+                  onClick={() => removeKeyword(k)}
+                >
+                  ✕
+                </button>
+              </span>
+            ))}
             {kwDraft === null && (
-              <button type="button" className={styles.ghostBtn} onClick={() => setKwDraft('')}>
-                + 키워드 추가
+              <button
+                type="button"
+                className={styles.addSquare}
+                onClick={() => setKwDraft('')}
+                title="키워드 추가"
+                aria-label="키워드 추가"
+              >
+                +
               </button>
             )}
           </div>
@@ -338,33 +388,25 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
                   if (e.key === 'Escape') setKwDraft(null)
                 }}
               />
-              <button type="button" className={styles.draftAdd} onClick={confirmAddKeyword}>
-                추가
+              <button
+                type="button"
+                className={styles.draftAdd}
+                onClick={confirmAddKeyword}
+                title="추가"
+                aria-label="추가"
+              >
+                ✓
               </button>
-              <button type="button" className={styles.draftCancel} onClick={() => setKwDraft(null)}>
-                취소
+              <button
+                type="button"
+                className={styles.draftCancel}
+                onClick={() => setKwDraft(null)}
+                title="취소"
+                aria-label="취소"
+              >
+                ✕
               </button>
             </div>
-          )}
-
-          {keywords.length > 0 ? (
-            <div className={styles.kwList}>
-              {keywords.map((k) => (
-                <span key={k} className={styles.kw}>
-                  {k}
-                  <button
-                    type="button"
-                    className={styles.kwDel}
-                    title="삭제"
-                    onClick={() => removeKeyword(k)}
-                  >
-                    ✕
-                  </button>
-                </span>
-              ))}
-            </div>
-          ) : (
-            kwDraft === null && <p className={styles.hint}>아직 키워드가 없습니다</p>
           )}
         </div>
       </div>
@@ -373,38 +415,9 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
       <section className={styles.section}>
         <div className={styles.sectionHead}>
           <span className={styles.sectionLabel}>설정</span>
-          {catDraft === null && (
-            <button type="button" className={styles.ghostBtn} onClick={() => setCatDraft('')}>
-              + 카테고리 추가
-            </button>
-          )}
         </div>
 
-        {catDraft !== null && (
-          <div className={styles.draftRow}>
-            <input
-              className={styles.draftName}
-              autoFocus
-              value={catDraft}
-              placeholder="카테고리 이름 (예: 좋아하는 음악)"
-              onChange={(e) => setCatDraft(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') confirmAddCategory()
-                if (e.key === 'Escape') setCatDraft(null)
-              }}
-            />
-            <button type="button" className={styles.draftAdd} onClick={confirmAddCategory}>
-              추가
-            </button>
-            <button type="button" className={styles.draftCancel} onClick={() => setCatDraft(null)}>
-              취소
-            </button>
-          </div>
-        )}
-
-        {settings.length === 0 && catDraft === null ? (
-          <p className={styles.hint}>카테고리가 없습니다 · 추가해보세요</p>
-        ) : (
+        {settings.length > 0 && (
           <div className={styles.catList}>
             {settings.map((s) => (
               <div key={s.id} className={styles.catRow}>
@@ -425,6 +438,48 @@ export default function CharacterForm({ character, onChange, onDelete, onToast }
               </div>
             ))}
           </div>
+        )}
+
+        {catDraft !== null ? (
+          <div className={`${styles.draftRow} ${settings.length > 0 ? styles.draftRowGap : ''}`}>
+            <input
+              className={styles.draftName}
+              autoFocus
+              value={catDraft}
+              placeholder="카테고리 이름 (예: 좋아하는 음악)"
+              onChange={(e) => setCatDraft(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') confirmAddCategory()
+                if (e.key === 'Escape') setCatDraft(null)
+              }}
+            />
+            <button
+              type="button"
+              className={styles.draftAdd}
+              onClick={confirmAddCategory}
+              title="추가"
+              aria-label="추가"
+            >
+              ✓
+            </button>
+            <button
+              type="button"
+              className={styles.draftCancel}
+              onClick={() => setCatDraft(null)}
+              title="취소"
+              aria-label="취소"
+            >
+              ✕
+            </button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            className={`${styles.addBar} ${settings.length > 0 ? styles.addBarGap : ''}`}
+            onClick={() => setCatDraft('')}
+          >
+            + 카테고리 추가
+          </button>
         )}
       </section>
 

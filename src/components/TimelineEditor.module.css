@@ -7,26 +7,30 @@
 .label {
   font-size: 18px;
   font-weight: 700;
-  color: var(--ink);
+  line-height: 1;
+  color: var(--text-0);
   letter-spacing: 0.02em;
 }
-.addBtn {
+
+/* 하단 사건 추가 바 (설정과 동일) */
+.addBar {
+  width: 100%;
   background: transparent;
-  border: 1.5px solid var(--ink);
-  color: var(--text-1);
+  border: 1.5px dashed var(--dash);
+  border-radius: 4px;
+  color: var(--text-2);
   font-family: inherit;
-  font-size: 13.5px;
-  padding: 5px 12px;
-  border-radius: 3px;
-  transition: background 0.15s ease, color 0.15s ease;
+  font-size: 14px;
+  padding: 9px;
+  text-align: center;
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
-.addBtn:hover {
-  background: var(--ink);
-  color: var(--bg-1);
+.addBar:hover {
+  border-color: var(--ink);
+  color: var(--text-0);
 }
-.empty {
-  font-size: 12.5px;
-  color: var(--text-3);
+.addBarGap {
+  margin-top: 14px;
 }
 
 .list {
