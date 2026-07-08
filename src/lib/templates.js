@@ -2,6 +2,12 @@
 export const TEMPLATES = [
   { id: 'single-basic', category: '1인용', name: '기본', width: 800, height: 1200 },
   { id: 'single-charfile', category: '1인용', name: '캐릭터 파일', width: 1400, height: 900 },
+  { id: 'single-id', category: '1인용', name: 'ID 카드', width: 1000, height: 640 },
+  { id: 'single-collectible', category: '1인용', name: '수집 카드', width: 760, height: 1060 },
+  { id: 'single-gacha', category: '1인용', name: '가챠 화면', width: 1280, height: 800 },
+  { id: 'single-receipt', category: '1인용', name: '영수증', width: 720, height: 1180 },
+  { id: 'single-inventory', category: '1인용', name: '인벤토리', width: 1040, height: 780 },
+  { id: 'single-themesong', category: '1인용', name: '테마곡', width: 820, height: 1120 },
   { id: 'double-basic', category: '2인용', name: '기본', width: 800, height: 1200 },
   { id: 'double-appearance', category: '2인용', name: '외관카드', width: 1400, height: 900 },
   { id: 'double-reference', category: '2인용', name: '레퍼런스 시트', width: 1600, height: 1000 },

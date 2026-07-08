@@ -2,11 +2,34 @@ import { useState } from 'react'
 import styles from './TemplateSelect.module.css'
 import { TEMPLATES, CATEGORIES } from '../lib/templates.js'
 
+const NEW_ICONS = {
+  'single-id': '🪪',
+  'single-collectible': '🃏',
+  'single-gacha': '🎰',
+  'single-receipt': '🧾',
+  'single-inventory': '🎮',
+  'single-themesong': '🎵',
+}
+
 // 템플릿 미리보기 스케치 (썸네일 이미지 없을 때) — 비율로 레이아웃 암시
 function TemplateThumb({ tpl }) {
   const landscape = tpl.width > tpl.height
   return (
     <div className={`${styles.thumb} ${landscape ? styles.thumbLand : styles.thumbPort}`}>
+      {NEW_ICONS[tpl.id] && (
+        <span
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            height: '100%',
+            fontSize: 48,
+          }}
+        >
+          {NEW_ICONS[tpl.id]}
+        </span>
+      )}
       {tpl.id === 'single-basic' && (
         <div className={styles.sketchBasic}>
           <span className={styles.sBar} />

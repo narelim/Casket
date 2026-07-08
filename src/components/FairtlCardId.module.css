@@ -1,0 +1,155 @@
+.card {
+  width: 1000px;
+  height: 640px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: var(--soft);
+  border-radius: 28px;
+  border: 3px solid var(--deep);
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  color: #241f2b;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.head {
+  height: 76px;
+  background: var(--accent);
+  color: var(--on);
+  display: flex;
+  align-items: center;
+  padding: 0 34px;
+  flex: 0 0 auto;
+}
+.brand {
+  font-family: 'AMORIA', serif;
+  font-size: 30px;
+  letter-spacing: 0.04em;
+}
+.headTitle {
+  margin-left: auto;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+.serial {
+  margin-left: 22px;
+  font-size: 18px;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  padding: 34px 40px;
+  min-height: 0;
+}
+
+.photoCol {
+  flex: 0 0 300px;
+  width: 300px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+}
+.photo {
+  position: relative;
+  width: 300px;
+  height: 330px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  border: 3px solid var(--deep);
+}
+.img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: center;
+}
+.ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b9adc4;
+  font-size: 24px;
+  letter-spacing: 0.2em;
+}
+.heart {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  font-size: 40px;
+  color: var(--accent);
+  opacity: 0.5;
+}
+.idLabel {
+  margin-top: 16px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--deep);
+}
+
+.fields {
+  flex: 1;
+  min-width: 0;
+  padding-top: 6px;
+}
+.row {
+  margin-bottom: 22px;
+}
+.label {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+.value {
+  display: block;
+  font-size: 27px;
+  font-weight: 600;
+  word-break: break-word;
+}
+.alias {
+  margin-top: 6px;
+  font-size: 20px;
+  color: var(--deep);
+  font-style: italic;
+}
+
+.strip {
+  height: 34px;
+  background: var(--deep);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  flex: 0 0 auto;
+}
+.star {
+  color: var(--soft);
+  font-size: 14px;
+  opacity: 0.7;
+}
+.foot {
+  height: 40px;
+  background: var(--accent);
+  color: var(--on);
+  display: flex;
+  align-items: center;
+  padding: 0 34px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  flex: 0 0 auto;
+}

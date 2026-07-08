@@ -24,11 +24,13 @@ const FairtlCard = forwardRef(function FairtlCard(
 ) {
   const c = character || {}
   const colors = c.colors ?? []
-  const accent = pointColor || colors[0]?.hex || '#b9a3ff'
+  const accent = pointColor || c.mainColor || colors[0]?.hex || '#b9a3ff'
   const tags = parseTags(c.tags)
+  const keywords = Array.isArray(c.keywords) ? c.keywords : []
 
   const info = [
     { label: '나이', value: c.age },
+    { label: '키', value: c.height && `${c.height}cm` },
     { label: '성별', value: c.gender },
     { label: '생일', value: c.birthday && formatBirthdayDisplay(c.birthday) },
   ].filter((i) => i.value && String(i.value).trim())
@@ -74,6 +76,19 @@ const FairtlCard = forwardRef(function FairtlCard(
                 {tags.map((t, i) => (
                   <span key={i} className={styles.tag}>
                     #{t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {keywords.length > 0 && (
+            <div className={styles.tagBlock}>
+              <span className={styles.infoLabel}>키워드</span>
+              <div className={styles.tags}>
+                {keywords.map((k, i) => (
+                  <span key={i} className={styles.tag}>
+                    {k}
                   </span>
                 ))}
               </div>

@@ -8,6 +8,12 @@ import FairtlCardAppearance from './FairtlCardAppearance.jsx'
 import FairtlCardReference from './FairtlCardReference.jsx'
 import FairtlCardFull from './FairtlCardFull.jsx'
 import FairtlCardCalendar from './FairtlCardCalendar.jsx'
+import FairtlCardId from './FairtlCardId.jsx'
+import FairtlCardCollectible from './FairtlCardCollectible.jsx'
+import FairtlCardGacha from './FairtlCardGacha.jsx'
+import FairtlCardReceipt from './FairtlCardReceipt.jsx'
+import FairtlCardInventory from './FairtlCardInventory.jsx'
+import FairtlCardThemesong from './FairtlCardThemesong.jsx'
 import EditableSlot from './EditableSlot.jsx'
 import TemplateSelect from './TemplateSelect.jsx'
 import StickerPicker from './StickerPicker.jsx'
@@ -58,6 +64,13 @@ export default function FairtlEditor({ characters, initialCharacterId, onExit, s
   const isReference = working.template === 'double-reference'
   const isFull = working.template === 'double-full'
   const isCalendar = working.template === 'calendar'
+  const isId = working.template === 'single-id'
+  const isCollectible = working.template === 'single-collectible'
+  const isGacha = working.template === 'single-gacha'
+  const isReceipt = working.template === 'single-receipt'
+  const isInventory = working.template === 'single-inventory'
+  const isThemesong = working.template === 'single-themesong'
+  const isNewSingle = isId || isCollectible || isGacha || isReceipt || isInventory || isThemesong
   const ratioDims = isCalendar ? CALENDAR_RATIOS[working.ratio] || CALENDAR_RATIOS.mobile : null
   const CARD_W = ratioDims ? ratioDims.w : tpl.width
   const CARD_H = ratioDims ? ratioDims.h : tpl.height
@@ -107,6 +120,8 @@ export default function FairtlEditor({ characters, initialCharacterId, onExit, s
           ...autofillSide(templateId, 'b', byId[bId]),
         })
       : {}
+    const firstChar = byId[firstId]
+    const pointColor = dbl ? '' : firstChar?.mainColor || firstChar?.colors?.[0]?.hex || ''
     setSelectedStickerId(null)
     setWorking(
       createFairtl({
@@ -114,6 +129,7 @@ export default function FairtlEditor({ characters, initialCharacterId, onExit, s
         characterId: dbl ? '' : firstId,
         characterA: aId,
         characterB: bId,
+        pointColor,
         extra,
       }),
     )
@@ -128,9 +144,13 @@ export default function FairtlEditor({ characters, initialCharacterId, onExit, s
   }
 
   function handleCharacterChange(id) {
-    const palette = byId[id]?.colors ?? []
-    const keep = palette.some((col) => col.hex === working.pointColor)
-    patch({ characterId: id, pointColor: keep ? working.pointColor : palette[0]?.hex || '' })
+    const ch = byId[id]
+    const palette = ch?.colors ?? []
+    const keep = palette.some((col) => col.hex === working.pointColor) || working.pointColor === ch?.mainColor
+    patch({
+      characterId: id,
+      pointColor: keep ? working.pointColor : ch?.mainColor || palette[0]?.hex || '',
+    })
   }
 
   // 2인용 — 캐릭터 선택 시 설정 텍스트 자동 가져오기 (빈 칸만)
@@ -465,6 +485,21 @@ export default function FairtlEditor({ characters, initialCharacterId, onExit, s
         />
       )
     if (isFull) return <FairtlCardFull ref={ref} {...doubleProps} />
+    if (isNewSingle) {
+      const singleExtProps = {
+        character: selectedChar,
+        pointColor: working.pointColor,
+        data: working.extra || {},
+        adminLayout,
+        ...stickerProps,
+      }
+      if (isId) return <FairtlCardId ref={ref} {...singleExtProps} />
+      if (isCollectible) return <FairtlCardCollectible ref={ref} {...singleExtProps} />
+      if (isGacha) return <FairtlCardGacha ref={ref} {...singleExtProps} />
+      if (isReceipt) return <FairtlCardReceipt ref={ref} {...singleExtProps} />
+      if (isInventory) return <FairtlCardInventory ref={ref} {...singleExtProps} />
+      if (isThemesong) return <FairtlCardThemesong ref={ref} {...singleExtProps} />
+    }
     if (isCharFile) {
       return (
         <FairtlCardCharFile
@@ -892,6 +927,17 @@ export default function FairtlEditor({ characters, initialCharacterId, onExit, s
                     </div>
                   </Field>
                 </>
+              ) : isNewSingle ? (
+                <SinglePlusPanel
+                  template={working.template}
+                  characters={characters}
+                  working={working}
+                  onCharacter={handleCharacterChange}
+                  patch={patch}
+                  getEx={getEx}
+                  setEx={setEx}
+                  slotBind={slotBind}
+                />
               ) : (
                 <>
                   <Field label="캐릭터">
@@ -1614,4 +1660,166 @@ function FullPanel({ characters, aVal, bVal, onSelectA, onSelectB, getEx, setEx,
       </div>
     </>
   )
+}
+
+// 새 1인용 템플릿 공용 설정 패널
+function SinglePlusPanel({ template, characters, working, onCharacter, patch, getEx, setEx, slotBind }) {
+  const charSel = (
+    <Field label="캐릭터">
+      <CharSelect characters={characters} value={working.characterId} onChange={onCharacter} />
+      <p className={styles.hint}>이름·나이·키·성별·생일·태그·키워드·대표색이 자동으로 채워집니다.</p>
+    </Field>
+  )
+  const color = (
+    <Field label="포인트 컬러 (대표색 자동)">
+      <div className={styles.colorInputRow}>
+        <input
+          type="color"
+          className={styles.colorInput}
+          value={working.pointColor || '#b9a3ff'}
+          onChange={(e) => patch({ pointColor: e.target.value })}
+        />
+        <span className={styles.colorVal}>{(working.pointColor || '#b9a3ff').toUpperCase()}</span>
+      </div>
+    </Field>
+  )
+  const illust = (label, w = 240, h = 300) => (
+    <Field label={label}>
+      <EditableSlot label="이미지" width={w} height={h} {...slotBind('illust')} />
+    </Field>
+  )
+  const text = (label, key, ph) => (
+    <Field label={label}>
+      <input
+        className={styles.input}
+        value={getEx(key)}
+        placeholder={ph}
+        onChange={(e) => setEx(key, e.target.value)}
+      />
+    </Field>
+  )
+  const area = (label, key, ph) => (
+    <Field label={label}>
+      <textarea
+        className={styles.textarea}
+        rows={5}
+        value={getEx(key)}
+        placeholder={ph}
+        onChange={(e) => setEx(key, e.target.value)}
+      />
+    </Field>
+  )
+
+  if (template === 'single-id') {
+    return (
+      <>
+        {charSel}
+        {color}
+        {illust('사진', 220, 250)}
+        {text('ID 번호', 'idNo', '비우면 생일 기반 자동')}
+        {text('Type', 'idType', '예: CAT / QUEEN')}
+        {text('MBTI', 'mbti', '예: ENFP')}
+        {text('발급일', 'issueDate', '2023-05-15')}
+      </>
+    )
+  }
+  if (template === 'single-collectible') {
+    return (
+      <>
+        {charSel}
+        {color}
+        {illust('일러스트', 240, 300)}
+        {text('레벨', 'level', '07')}
+        <Field label="레어도 (별)">
+          <select
+            className={styles.select}
+            value={getEx('rarity', '3')}
+            onChange={(e) => setEx('rarity', e.target.value)}
+          >
+            {[1, 2, 3, 4, 5].map((n) => (
+              <option key={n} value={n}>
+                {'★'.repeat(n)}
+              </option>
+            ))}
+          </select>
+        </Field>
+        {text('스킬 이름', 'abilityName', '비우면 키워드 사용')}
+        {area('플레이버 텍스트', 'flavor', '비우면 한줄소개 사용')}
+      </>
+    )
+  }
+  if (template === 'single-gacha') {
+    return (
+      <>
+        {charSel}
+        {color}
+        {illust('캐릭터 일러스트', 240, 320)}
+        {text('등급 라벨', 'rarity', 'SSR')}
+      </>
+    )
+  }
+  if (template === 'single-receipt') {
+    return (
+      <>
+        {charSel}
+        {color}
+        {text('주문번호', 'orderNo', '비우면 자동')}
+        {text('날짜', 'dateText', '2026 . 07 . 08')}
+        <Field label="결제 수단">
+          <select
+            className={styles.select}
+            value={getEx('pay', 'card')}
+            onChange={(e) => setEx('pay', e.target.value)}
+          >
+            <option value="cash">CASH</option>
+            <option value="card">CARD</option>
+            <option value="ewallet">E-WALLET</option>
+          </select>
+        </Field>
+        {text('연락처', 'contact', '@casket')}
+        <p className={styles.hint}>이름·나이·키·성별·생일·태그·키워드가 영수증 항목으로 자동 생성됩니다.</p>
+      </>
+    )
+  }
+  if (template === 'single-inventory') {
+    return (
+      <>
+        {charSel}
+        {color}
+        {illust('포트레이트', 240, 300)}
+        <Field label="인벤토리 아이템 (8칸)">
+          <div className={styles.slotRow}>
+            {[1, 2, 3, 4].map((n) => (
+              <EditableSlot key={n} label={`${n}`} width={64} height={64} {...slotBind(`item${n}`)} />
+            ))}
+          </div>
+          <div className={styles.slotRow}>
+            {[5, 6, 7, 8].map((n) => (
+              <EditableSlot key={n} label={`${n}`} width={64} height={64} {...slotBind(`item${n}`)} />
+            ))}
+          </div>
+        </Field>
+        {text('시간', 'timeText', '00:00')}
+        {text('날짜', 'dateText', 'spring 15')}
+        {text('기분(mood)', 'mood', '비우면 키워드 사용')}
+        {text('하트 (0~10)', 'hearts', '8')}
+        {text('대사', 'line', '비우면 한줄소개 사용')}
+      </>
+    )
+  }
+  if (template === 'single-themesong') {
+    return (
+      <>
+        {charSel}
+        {color}
+        {illust('앨범 아트', 240, 240)}
+        {text('곡 제목', 'songTitle', '테마곡 no.1')}
+        {text('아티스트', 'artist', '비우면 캐릭터명')}
+        {text('앨범', 'album', 'CASKET OST')}
+        {text('재생 시간', 'duration', '3:33')}
+        {area('가사 / 모티브', 'lyrics', '가사 한 구절이나 모티브 설명 (비우면 한줄소개)')}
+      </>
+    )
+  }
+  return charSel
 }

@@ -1,0 +1,163 @@
+.card {
+  width: 720px;
+  height: 1180px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: var(--soft);
+  padding: 26px;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+}
+
+.paper {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fffdfa;
+  border: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 34px 40px;
+  color: var(--deep);
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: 'AMORIA', 'Playfair Display', serif;
+  font-size: 64px;
+  text-align: center;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+.thanks {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin-top: 10px;
+  color: var(--accent);
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 26px;
+  letter-spacing: 0.04em;
+}
+
+.dash {
+  border-top: 2px dashed var(--accent);
+  margin: 14px 0;
+}
+.thead {
+  display: flex;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+.cItem {
+  flex: 0 0 42%;
+}
+.cQty {
+  flex: 0 0 18%;
+  text-align: center;
+}
+.cPrice {
+  flex: 1;
+  text-align: right;
+  word-break: break-word;
+}
+
+.items {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.item {
+  display: flex;
+  align-items: baseline;
+  font-size: 20px;
+  padding: 9px 0;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.14);
+}
+.item .cItem {
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+}
+.item .cPrice {
+  font-weight: 600;
+}
+
+.total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 22px;
+}
+.total > span:first-child {
+  font-family: 'AMORIA', 'Playfair Display', serif;
+  font-size: 30px;
+  color: var(--accent);
+}
+.totalVal {
+  font-weight: 700;
+  font-style: italic;
+  word-break: break-word;
+  max-width: 60%;
+  text-align: right;
+}
+
+.pays {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0 4px;
+  font-size: 17px;
+  font-weight: 700;
+}
+.pay {
+  color: rgba(0, 0, 0, 0.3);
+}
+.payOn {
+  color: var(--accent);
+}
+
+.notify {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.contact {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 6px;
+}
+
+.barcode {
+  height: 60px;
+  margin: 20px 0 8px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--deep) 0,
+    var(--deep) 3px,
+    transparent 3px,
+    transparent 6px,
+    var(--deep) 6px,
+    var(--deep) 8px,
+    transparent 8px,
+    transparent 13px
+  );
+}
+.code {
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 0.3em;
+  font-weight: 600;
+}
